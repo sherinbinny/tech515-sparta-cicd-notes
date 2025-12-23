@@ -39,7 +39,9 @@ was created with the following configuration:
 - Description: Testing stage of CI triggered via webhook
 - Maximum builds to keep: 5 (to manage disk usage)
 
-📸 _Screenshot: Jenkins job general configuration_
+![Jenkins job general configuration](images/1.png)
+
+![Jenkins job general configuration](images/5.png)
 
 ---
 
@@ -59,7 +61,7 @@ was created with the following configuration:
   - Initially tested on `main`
   - Final configuration: `*/dev`
 
-📸 _Screenshot: Source Code Management configuration_
+![Source Code Management configuration](images/6.png)
 
 ---
 
@@ -69,7 +71,7 @@ The option **“GitHub hook trigger for GITScm polling”** was enabled.
 
 This allows Jenkins to start a build **automatically** whenever GitHub sends a webhook notification after a push event, rather than relying on manual builds or scheduled polling.
 
-📸 _Screenshot: Build trigger configuration_
+![Build trigger configuration](images/10.png)
 
 ---
 
@@ -79,8 +81,6 @@ This allows Jenkins to start a build **automatically** whenever GitHub sends a w
 - Node.js version **20** was selected
 
 This ensures consistency between local development and the CI environment.
-
-📸 _Screenshot: Build environment configuration_
 
 ---
 
@@ -100,7 +100,7 @@ These steps:
 2. Install required dependencies
 3. Run automated tests to validate the application
 
-📸 _Screenshot: Execute shell build step_
+![Execute shell build step](images/7.png)
 
 ---
 
@@ -114,7 +114,7 @@ A webhook was configured in the GitHub repository with:
 
 This allows GitHub to notify Jenkins instantly whenever code changes are pushed.
 
-📸 _Screenshot: GitHub webhook configuration_
+![GitHub webhook configuration](images/2.png)
 
 ---
 
@@ -122,22 +122,33 @@ This allows GitHub to notify Jenkins instantly whenever code changes are pushed.
 
 An SSH key (`sherin-jenkins-2-github-key`) was added to Jenkins credentials to securely authenticate Jenkins with GitHub.
 
+[Learn how to create an SSH key](add-github-ssh-key.md)
+
 Using SSH credentials is more secure than username/password authentication and is the recommended industry approach for CI/CD pipelines.
 
-📸 _Screenshot: Jenkins credentials configuration_
+![Jenkins credentials configuration](images/3.png)
+![Jenkins credentials configuration](images/4.png)
 
 ---
 
 ## 6. Build Execution & Verification (What Happened)
 
 - A manual build was triggered initially to verify the configuration
+
+![How to manual build](images/8.png)
+
 - Jenkins successfully initiated the build on the EC2 instance
+
+![Initiate EC2 instance](images/9.png)
+
 - Changes were made to the `README.md` file on both the `main` and `dev` branches
+
+![Changes on readme](images/23.png)
+
 - Each push automatically triggered a new Jenkins build via the webhook
 - All builds completed successfully, indicated by a **green status icon**
 
-📸 _Screenshot: Successful Jenkins build (green tick)_
-📸 _Screenshot: Console output showing npm test success_
+![Successful Jenkins build (green tick](images/11.png)
 
 ---
 
@@ -165,10 +176,3 @@ From completing this task, I learned:
 - The importance of consistent environments using Node version control
 
 This task helped me understand how individual CI jobs fit into a larger CI/CD pipeline and reinforced how automation improves software quality and delivery speed.
-
----
-
-## 9. Conclusion
-
-The Jenkins CI Job 1 was successfully implemented to automate the testing stage of the pipeline.
-By using webhooks, secure credentials, and automated tests, the pipeline reliably validates code changes and provides immediate feedback, demonstrating a core principle of Continuous Integration.
