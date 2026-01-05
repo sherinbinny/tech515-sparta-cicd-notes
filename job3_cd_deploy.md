@@ -1,37 +1,25 @@
-# CI/CD Pipeline – Job 3: Continuous Deployment to AWS EC2
+# Jenkins Job 3: Continuous Deployment to AWS EC2
 
-## Overview
+## 1. Objective
 
 Job 3 is the final step in our CI/CD pipeline, responsible for **deploying the tested and merged code to the production EC2 instance**. It ensures that any change pushed to the `dev` branch and successfully merged into `main` is automatically deployed and reflected on the production frontpage.
 
-**Pipeline Flow Recap:**
-
-1. Developer pushes changes to GitHub `dev` branch.
-2. Job 1 (CI) runs tests on the dev branch.
-3. Job 2 (CI) merges dev into main after tests pass.
-4. **Job 3 (CD) deploys the updated code to EC2.**
-
 ---
 
-## Objectives of Job 3
+## 2. Overall Pipeline Diagram
+
+![Overall Pipeline Diagram](images/diagram-2.png)
 
 * **Automate deployment:** Eliminate manual copying and restarting of the app.
 * **Ensure reliability:** Every successful merge to `main` triggers a deployment.
 * **Maintain security:** Use SSH key credentials instead of exposing passwords.
 * **Enable fast recovery:** PM2 ensures the app is restarted cleanly.
 
-**Benefits Observed:**
-
-* Reduced manual errors during deployment.
-* Faster updates visible on the frontpage.
-* Clear audit trail for deployment via Jenkins console logs.
-* Security maintained via credentials and SSH.
-
 ---
 
-## Step-by-Step Setup
+## 3. Jenkins Job Configuration
 
-### 1. Create Job in Jenkins
+### 3.1 Create Job in Jenkins
 
 * **Job Name:** `sherin-job3-cd-deploy`
 * **Type:** Freestyle project
@@ -39,40 +27,45 @@ Job 3 is the final step in our CI/CD pipeline, responsible for **deploying the t
 * **Max Builds to Keep:** 5
 * **GitHub Project URL:** [tech515-sparta-test-app-cicd](https://github.com/sherinbinny/tech515-test-app-cicd)
 
+![Jenkins job general configuration](images/18.png)
+
 ---
 
-### 2. Source Code Management
+### 3.2 Source Code Management
 
 * **Repository:** `git@github.com:sherinbinny/tech515-sparta-test-app-cicd.git`
 * **Credentials:** `sherin-jenkins-2-github-key` (Read/Write access)
 * **Branch Specifier:** `main`
-* **Why:** Job 3 always deploys production-ready code from `main`.
 
-**Screenshot 1:** Insert SCM configuration screenshot here.
+![Source Code Management configuration](images/19.png)
+
+* **Why:** Job 3 always deploys production-ready code from `main`.
 
 ---
 
-### 3. Build Triggers
+### 3.3 Build Triggers
 
 * **Trigger:** Build after other projects are built
 * **Project to Watch:** `sherin-job2-ci-merge`
-* **Why:** Ensures Job 3 only runs **after dev code is tested and merged into main**.
 
-**Screenshot 2:** Insert build triggers screenshot here.
+![Build triggers section](images/20.png)
+
+* **Why:** Ensures Job 3 only runs **after dev code is tested and merged into main**.
 
 ---
 
-### 4. Build Environment
+### 3.4 Build Environment
 
 * **Use SSH Agent:** Yes
 * **Credentials:** EC2 SSH key (`ubuntu`)
-* **Why:** SSH key provides secure access to the EC2 instance for deployment.
 
-**Screenshot 3:** Insert SSH agent credentials screenshot here.
+![Build Environment section](images/21.png)
+
+* **Why:** SSH key provides secure access to the EC2 instance for deployment.
 
 ---
 
-### 5. Execute Shell Script
+### 3.5 Execute Shell Script
 
 ```bash
 echo "Copying application files to EC2..."
@@ -89,6 +82,8 @@ pm2 save
 EOF
 ```
 
+![Shell script](images/22.png)
+
 **Explanation of Script:**
 
 1. `rsync -avz --delete`: Copies all code from Jenkins workspace to EC2, excluding no files (can exclude `.git` or `node_modules` if desired).
@@ -98,11 +93,9 @@ EOF
 5. `pm2 start app.js --name sparta-app`: Starts the app with PM2 under a specific name.
 6. `pm2 save`: Saves PM2 process list to ensure restart persistence on server reboot.
 
-**Screenshot 4:** Insert shell script screenshot here.
-
 ---
 
-### 6. Security and Authentication
+## 4. Security and Authentication
 
 * SSH key for EC2 securely stored in Jenkins credentials.
 * No passwords exposed in scripts.
@@ -110,7 +103,7 @@ EOF
 
 ---
 
-### 7. Testing the Deployment
+## 5. Testing the Deployment
 
 **Steps:**
 
@@ -121,32 +114,26 @@ EOF
 5. Job 3 copies the updated code to EC2, installs dependencies, and restarts the app.
 6. Verify the change appears on the production frontpage.
 
-**Screenshot 5:** Insert frontpage updated via CI/CD screenshot here.
+![Updated frontpage](images/change-2.png)
 
-**Observation:** Changes were reflected within a minute or two. Multiple changes were pushed and deployed successfully, confirming reliability.
+![Updated frontpage](images/change-1.png)
+
+Changes were reflected within a minute or two. Multiple changes were pushed and deployed successfully, confirming reliability.
 
 ---
 
-### 8. Lessons Learned
+## 6. Lessons Learned
 
-* CI/CD pipelines dramatically reduce deployment errors.
-* Jenkins credentials and SSH keys ensure secure automated operations.
+* Reduced manual errors during deployment.
+* Faster updates visible on the frontpage.
+* Security maintained via Jenkins credentials and SSH.
 * rsync + SSH is a cleaner approach than git clone on production.
-* PM2 simplifies Node.js process management during deployments.
 * Testing each stage separately helps identify failures before production impact.
 
 ---
 
-### 9. Overall Pipeline Diagram
+## 7. Testing Links
 
-**Screenshot 6 / Diagram:** 
-
-
-
----
-
-### 10. Testing Links
-
-screenshot
+![Testing Links](images/links.png)
 
 **Notes:** This confirms that the pipeline successfully updates production with every change pushed to `dev`.

@@ -1,6 +1,6 @@
-# Jenkins CI Job 1 – Testing Stage with Webhook Trigger
+# Jenkins Job 1: Testing Stage with Webhook Trigger
 
-## 1. Objective (What)
+## 1. Objective
 
 The objective of this task was to set up **Job 1 of a Continuous Integration (CI) pipeline** using Jenkins.
 This job focuses on the **testing stage**, ensuring that automated tests are run every time code is pushed to the GitHub repository.
@@ -14,7 +14,7 @@ The key goals were:
 
 ---
 
-## 2. Tools & Technologies Used (What)
+## 2. Tools & Technologies Used
 
 - **Jenkins** (Freestyle project)
 - **GitHub** (Source code repository)
@@ -26,7 +26,7 @@ The key goals were:
 
 ---
 
-## 3. Jenkins Job Configuration (How)
+## 3. Jenkins Job Configuration
 
 ### 3.1 Job Setup
 
@@ -65,7 +65,7 @@ was created with the following configuration:
 
 ---
 
-### 3.3 Build Trigger Configuration (How & Why)
+### 3.3 Build Trigger Configuration
 
 The option **“GitHub hook trigger for GITScm polling”** was enabled.
 
@@ -104,7 +104,7 @@ These steps:
 
 ---
 
-## 4. GitHub Webhook Setup (How)
+## 4. GitHub Webhook Setup
 
 A webhook was configured in the GitHub repository with:
 
@@ -118,7 +118,7 @@ This allows GitHub to notify Jenkins instantly whenever code changes are pushed.
 
 ---
 
-## 5. Credentials Configuration (Why)
+## 5. Credentials Configuration
 
 An SSH key (`sherin-jenkins-2-github-key`) was added to Jenkins credentials to securely authenticate Jenkins with GitHub.
 
@@ -131,7 +131,7 @@ Using SSH credentials is more secure than username/password authentication and i
 
 ---
 
-## 6. Build Execution & Verification (What Happened)
+## 6. Build Execution & Verification
 
 - A manual build was triggered initially to verify the configuration
 
@@ -148,31 +148,13 @@ Using SSH credentials is more secure than username/password authentication and i
 - Each push automatically triggered a new Jenkins build via the webhook
 - All builds completed successfully, indicated by a **green status icon**
 
-![Successful Jenkins build (green tick](images/11.png)
+![Successful Jenkins build (green tick)](images/11.png)
 
 ---
 
-## 7. Why This Setup Is Important (Why)
-
-This CI setup ensures:
+## 7. Lessons Learned
 
 - Code is automatically tested on every push
 - Errors are caught early before deployment
 - Developers receive immediate feedback
 - Manual testing and human error are reduced
-
-This reflects real-world DevOps practices where automation is critical for speed, reliability, and scalability.
-
----
-
-## 8. What I Learned (Reflection)
-
-From completing this task, I learned:
-
-- How Jenkins integrates with GitHub using webhooks
-- How to configure secure SSH credentials for CI pipelines
-- How automated testing fits into the CI lifecycle
-- How to debug builds using Jenkins console output
-- The importance of consistent environments using Node version control
-
-This task helped me understand how individual CI jobs fit into a larger CI/CD pipeline and reinforced how automation improves software quality and delivery speed.
