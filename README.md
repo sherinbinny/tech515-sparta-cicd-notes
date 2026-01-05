@@ -1,5 +1,19 @@
 # Sparta Test App – CI/CD Pipeline Documentation
 
+- [Sparta Test App – CI/CD Pipeline Documentation](#sparta-test-app--cicd-pipeline-documentation)
+  - [Overview](#overview)
+  - [CI/CD Pipeline Overview](#cicd-pipeline-overview)
+  - [Why we set up the CI/CD pipeline this way](#why-we-set-up-the-cicd-pipeline-this-way)
+  - [Job Documentation](#job-documentation)
+  - [Intro to Jenkins \& CI/CD (some notes)](#intro-to-jenkins--cicd-some-notes)
+    - [What is CI? Benefits?](#what-is-ci-benefits)
+    - [What is CD? Benefits?](#what-is-cd-benefits)
+    - [What is Jenkins?](#what-is-jenkins)
+  - [Stages of a Jenkins CI/CD Pipeline](#stages-of-a-jenkins-cicd-pipeline)
+  - [Alternatives to Jenkins](#alternatives-to-jenkins)
+  - [Business Value of Building a CI/CD Pipeline](#business-value-of-building-a-cicd-pipeline)
+
+
 ## Overview
 
 This repository demonstrates a **complete CI/CD pipeline** for the Sparta Test App using Jenkins. The pipeline includes **three jobs**: automated testing (Job 1), automatic merging (Job 2), and deployment to an AWS EC2 instance (Job 3).  
@@ -47,9 +61,8 @@ This repository demonstrates a **complete CI/CD pipeline** for the Sparta Test A
 
 
 ---
-<br><br>
 
-## Intro to Jenkins & CI/CD
+## Intro to Jenkins & CI/CD (some notes)
 
 ### What is CI? Benefits?
 

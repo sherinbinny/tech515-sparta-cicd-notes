@@ -1,5 +1,17 @@
 # Jenkins Job 2: Automated Merge
 
+- [Jenkins Job 2: Automated Merge](#jenkins-job-2-automated-merge)
+  - [1. Objective](#1-objective)
+  - [2. Jenkins Job Configuration](#2-jenkins-job-configuration)
+    - [2.1 Job Setup](#21-job-setup)
+    - [2.2 SCM Configuration](#22-scm-configuration)
+    - [2.3 Build Triggers](#23-build-triggers)
+    - [2.3 Post-Build Actions – Git Publisher](#23-post-build-actions--git-publisher)
+  - [3. Testing the Flow](#3-testing-the-flow)
+  - [4. Challenges](#4-challenges)
+  - [5. Lessons Learned](#5-lessons-learned)
+
+
 ## 1. Objective
 
 The purpose of Job 2 is to automate the process of merging the `dev` branch into the `main` branch after ensuring that all CI tests on Job 1 pass. This is important because:

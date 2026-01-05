@@ -1,5 +1,20 @@
 # Creating and Using a GitHub SSH Key
 
+- [Creating and Using a GitHub SSH Key](#creating-and-using-a-github-ssh-key)
+    - [Purpose](#purpose)
+    - [Step 1: Start the SSH Agent](#step-1-start-the-ssh-agent)
+    - [Step 2: Add the Existing SSH Key to the Agent](#step-2-add-the-existing-ssh-key-to-the-agent)
+    - [Step 3: Test the Connection to GitHub](#step-3-test-the-connection-to-github)
+    - [Step 4: Clone a Repository Using SSH](#step-4-clone-a-repository-using-ssh)
+    - [Step 5: Make Changes and Push to GitHub](#step-5-make-changes-and-push-to-github)
+  - [Creating a New SSH Key (If Needed)](#creating-a-new-ssh-key-if-needed)
+    - [Step 1: Navigate to the SSH Directory](#step-1-navigate-to-the-ssh-directory)
+    - [Step 2: Generate a New SSH Key Pair](#step-2-generate-a-new-ssh-key-pair)
+    - [Step 3: View the Public Key](#step-3-view-the-public-key)
+    - [Commands used](#commands-used)
+    - [To create a new key](#to-create-a-new-key)
+
+
 ### Purpose
 
 SSH keys are used to securely authenticate with GitHub **without using a username and password every time**.

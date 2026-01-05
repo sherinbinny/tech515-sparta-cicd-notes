@@ -1,5 +1,20 @@
 # Jenkins Job 3: Continuous Deployment to AWS EC2
 
+- [Jenkins Job 3: Continuous Deployment to AWS EC2](#jenkins-job-3-continuous-deployment-to-aws-ec2)
+  - [1. Objective](#1-objective)
+  - [2. Overall Pipeline Diagram](#2-overall-pipeline-diagram)
+  - [3. Jenkins Job Configuration](#3-jenkins-job-configuration)
+    - [3.1 Create Job in Jenkins](#31-create-job-in-jenkins)
+    - [3.2 Source Code Management](#32-source-code-management)
+    - [3.3 Build Triggers](#33-build-triggers)
+    - [3.4 Build Environment](#34-build-environment)
+    - [3.5 Execute Shell Script](#35-execute-shell-script)
+  - [4. Security and Authentication](#4-security-and-authentication)
+  - [5. Testing the Deployment](#5-testing-the-deployment)
+  - [6. Lessons Learned](#6-lessons-learned)
+  - [7. Testing Links](#7-testing-links)
+
+
 ## 1. Objective
 
 Job 3 is the final step in our CI/CD pipeline, responsible for **deploying the tested and merged code to the production EC2 instance**. It ensures that any change pushed to the `dev` branch and successfully merged into `main` is automatically deployed and reflected on the production frontpage.
